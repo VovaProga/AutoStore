@@ -1,0 +1,176 @@
+
+ <!DOCTYPE html>
+ <html lang="ru">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Оформление заказа</title>
+     <link rel="stylesheet" href="styles.css">
+     <style>
+         /* Простые стили для формы */
+         body {
+             font-family: Arial, sans-serif;
+             padding: 20px;
+             background-color: #f4f4f9;
+         }
+ 
+         .form-container {
+             background-color: white;
+             padding: 20px;
+             border-radius: 20px;
+             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+             width: 400px;
+             margin: 0 auto;
+         }
+ 
+         .form-container h2 {
+             text-align: center;
+         }
+ 
+         /* Добавляем стиль для логотипов */
+         .card-logos {
+             text-align: center;
+             margin-bottom: 20px;
+         }
+ 
+         .card-logos img {
+             margin: 0 10px;
+             width: 50px;
+         }
+ 
+         .input-group {
+             margin-bottom: 25px;
+         }
+ 
+         label {
+             font-size: 14px;
+             margin-bottom: 5px;
+             display: block;
+         }
+ 
+         input[type="text"],
+         input[type="tel"],
+         input[type="email"] {
+             width: 100%;
+             padding: 7px;
+             font-size: 16px;
+             border: 1px solid #ccc;
+             border-radius: 5px;
+         }
+ 
+         .card-logo {
+             width: 50px;
+             margin-left: 10px;
+         }
+ 
+         .payment-btn {
+             width: 100%;
+             background-color: #4CAF50;
+             color: white;
+             padding: 10px;
+             border: none;
+             border-radius: 20px;
+             font-size: 16px;
+             cursor: pointer;
+         }
+ 
+         .payment-btn:hover {
+             background-color: #45a049;
+         }
+ 
+         .input-group small {
+             font-size: 12px;
+             color: #888;
+         }
+ 
+         .error-message {
+             color: red;
+             font-size: 12px;
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <div class="form-container">
+         <h2>Оформление заказа</h2>
+         <div class="card-logos">
+            <img src="img/Sber.png" alt="Сбербанк">
+            <img src="img/Visa.jpg" alt="Visa">
+            <img src="img/MasterCard.png" alt="MasterCard">
+        </div>
+         <form id="payment-form">
+             <div class="input-group">
+                 <label for="card-number">Номер карты</label>
+                 <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19" required>
+                 <small>Введите номер карты с пробелами через каждые 4 цифры</small>
+                 <div id="card-logo-container"></div>
+             </div>
+ 
+             <div class="input-group">
+                 <label for="expiration-date">Дата окончания действия</label>
+                 <input type="text" id="expiration-date" placeholder="MM/YY" maxlength="5" required>
+             </div>
+ 
+             <div class="input-group">
+                 <label for="cvc">CVC</label>
+                 <input type="text" id="cvc" placeholder="XXX" maxlength="3" required>
+             </div>
+ 
+             <div class="input-group">
+                 <label for="cardholder-name">Имя владельца карты</label>
+                 <input type="text" id="cardholder-name" required>
+             </div>
+ 
+             <button type="submit" class="payment-btn">Оплатить</button>
+             <div class="error-message" id="error-message"></div>
+         </form>
+     </div>
+ 
+     <script>
+         // Функция для форматирования номера карты с пробелами
+         document.getElementById('card-number').addEventListener('input', function (e) {
+             let input = e.target.value.replace(/\D/g, '').slice(0, 16);
+             let formattedValue = '';
+             for (let i = 0; i < input.length; i += 4) {
+                 formattedValue += input.slice(i, i + 4) + ' ';
+             }
+             e.target.value = formattedValue.trim();
+             updateCardLogo(e.target.value);
+         });
+ 
+         // Валидация формы и сообщение об ошибке
+         document.getElementById('payment-form').addEventListener('submit', function (e) {
+             e.preventDefault();
+             const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+             const expirationDate = document.getElementById('expiration-date').value;
+             const cvc = document.getElementById('cvc').value;
+             const cardholderName = document.getElementById('cardholder-name').value;
+             const errorMessage = document.getElementById('error-message');
+ 
+             // Проверка правильности введённых данных
+             if (!/^\d{16}$/.test(cardNumber)) {
+                 errorMessage.textContent = 'Номер карты должен состоять из 16 цифр.';
+                 return;
+             }
+             if (!/^\d{2}\/\d{2}$/.test(expirationDate)) {
+                 errorMessage.textContent = 'Неверный формат даты (MM/YY).';
+                 return;
+             }
+             if (!/^\d{3}$/.test(cvc)) {
+                 errorMessage.textContent = 'CVC должен состоять из 3 цифр.';
+                 return;
+             }
+             if (cardholderName.trim() === '') {
+                 errorMessage.textContent = 'Имя владельца карты обязательно.';
+                 return;
+             }
+ 
+             errorMessage.textContent = ''; // Если ошибок нет, скрыть сообщение
+             alert('Платеж успешно проведён!'); // Тут вы можете добавить логику для проведения реального платежа
+         });
+     </script>
+ 
+ </body>
+ </html>
+ 
+
