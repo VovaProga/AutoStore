@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог запчастей</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Стили для каталога */
+        #catalog-section {
+            padding: 20px;
+        }
+
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .product-item {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        /* Стили для изображения товара */
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-item:hover .product-image {
+            transform: scale(1.1); /* Увеличение картинки при наведении */
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px); /* Подъем карточки при наведении */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15); /* Тень при наведении */
+        }
+
+        /* Стили для кнопок */
+        button {
+            display: none; /* Скрываем кнопку по умолчанию */
+        }
+
+        .add-to-cart {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .product-item:hover .add-to-cart {
+            display: block; /* Показываем кнопку при наведении */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Каталог запчастей</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="cart.html">Корзина</a>
+        </nav>
+    </header>
+
+    <section id="catalog-section" class="section">
+        <h2>Наши товары</h2>
+        <ul id="catalog-list" class="product-list">
+            <li class="product-item">
+                <img src="images/product1.jpg" alt="Запчасть 1" class="product-image">
+                <h3>Запчасть 1</h3>
+                <p>Цена: 1000 руб.</p>
+                 Кнопка "Добавить в корзину" 
+                <button class="add-to-cart" onclick="addToCart(1)">Добавить в корзину</button>
+            </li>
+            <li class="product-item">
+                <img src="images/product2.jpg" alt="Запчасть 2" class="product-image">
+                <h3>Запчасть 2</h3>
+                <p>Цена: 1500 руб.</p>
+                Кнопка "Добавить в корзину" 
+                <button class="add-to-cart" onclick="addToCart(2)">Добавить в корзину</button>
+            </li>
+            <li class="product-item">
+                <img src="images/product3.jpg" alt="Запчасть 3" class="product-image">
+                <h3>Запчасть 3</h3>
+                <p>Цена: 2000 руб.</p>
+             Кнопка "Добавить в корзину" 
+                <button class="add-to-cart" onclick="addToCart(3)">Добавить в корзину</button>
+            </li>
+            Добавьте другие товары аналогичным образом 
+        </ul>
+    </section>
+
+    <footer>
+        <p>© 2024 Магазин автозапчастей</p>
+    </footer>
+
+    <script>
+        // Функция для добавления товара в корзину
+        function addToCart(productId) {
+            console.log(`Товар ${productId} добавлен в корзину`);
+            // Логика добавления товара в корзину (например, в localStorage или в массив)
+        }
+    </script>
+
+</body>
+</html>
