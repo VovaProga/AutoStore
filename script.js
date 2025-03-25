@@ -1,3 +1,7 @@
+
+
+
+
 // Массив товаров
 const products = [
     { id: 1, name: 'Тормозные колодки', price: 1500, image: 'img/product1.jpg' },
@@ -117,9 +121,4 @@ if (document.getElementById('payment-form')) {
         }
     });
 }
-
-
-
-
-
 
