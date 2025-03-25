@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Личный кабинет</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="catalog.html">Каталог</a>
+            <a href="cart.html">Корзина</a>
+            <div id="auth-container"></div>
+        </nav>
+    </header>
+    <main>
+        <div class="profile-container" id="profile-container">
+            <div class="profile-avatar" id="profile-avatar">ВГ</div>
+            <div class="profile-info" id="profile-info">
+                <h2>Загрузка данных...</h2>
+            </div>
+            <button id="logout-btn" class="logout-btn">Выйти из аккаунта</button>
+        </div>
+    </main>
+
+    <script type="module" src="profile.js"></script>
+</body>
+</html>

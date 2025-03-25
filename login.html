@@ -1,0 +1,70 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Вход</h2>
+        <form id="login-form">
+            <input type="email" id="login-email" placeholder="Email" required>
+            <input type="password" id="login-password" placeholder="Пароль" required>
+            <button type="button" onclick="loginUser()">Войти</button>
+        </form>
+        <p>Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+    </div>
+
+    <script type="module">
+        // 1. Добавьте импорт initializeApp
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+        // 2. Добавьте конфигурацию Firebase (должна совпадать с регистрацией)
+        const firebaseConfig = {
+            apiKey: "AIzaSyAV4oz47e-7f_azlWsu-jc_qDRnDindCgQ",
+            authDomain: "avto-ae8d9.firebaseapp.com",
+            projectId: "avto-ae8d9",
+            storageBucket: "avto-ae8d9.appspot.com",
+            messagingSenderId: "3772249669",
+            appId: "1:3772249669:web:eeb345c2ca5f85495d552c",
+            measurementId: "G-TW9YMF1B26"
+        };
+
+        // 3. Инициализируйте Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app); // Передайте app в getAuth
+
+        window.loginUser = function () {
+            const email = document.getElementById("login-email").value;
+            const password = document.getElementById("login-password").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Вы вошли в аккаунт!");
+                    window.location.href = "index.html"; // Перенаправление после входа
+                })
+                .catch((error) => {
+                    // Улучшенное сообщение об ошибке
+                    let errorMessage = "Ошибка входа";
+                    if (error.code === "auth/user-not-found") {
+                        errorMessage = "Пользователь не найден";
+                    } else if (error.code === "auth/wrong-password") {
+                        errorMessage = "Неверный пароль";
+                    } else if (error.code === "auth/email-not-verified") {
+                        errorMessage = "Email не подтверждён. Проверьте почту";
+                    }
+                    alert(errorMessage + ": " + error.message);
+                    console.error("Детали ошибки:", error.code);
+                });
+        };
+    </script>
+</body>
+</html>

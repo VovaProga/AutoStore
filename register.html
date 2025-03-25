@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Регистрация</h2>
+        <form id="register-form">
+            <input type="text" id="first-name" placeholder="Имя" required>
+            <input type="text" id="last-name" placeholder="Фамилия" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="tel" id="phone" placeholder="Номер телефона" required>
+            <input type="password" id="password" placeholder="Пароль" required>
+            <button type="button" onclick="registerUser()">Зарегистрироваться</button>
+        </form>
+        <p>Уже есть аккаунт? <a href="login.html">Войти</a></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+        // Ваша конфигурация Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAV4oz47e-7f_azlWsu-jc_qDRnDindCgQ",
+            authDomain: "avto-ae8d9.firebaseapp.com",
+            projectId: "avto-ae8d9",
+            storageBucket: "avto-ae8d9.appspot.com",
+            messagingSenderId: "3772249669",
+            appId: "1:3772249669:web:eeb345c2ca5f85495d552c",
+            measurementId: "G-TW9YMF1B26"
+        };
+
+        // Инициализация Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        window.registerUser = async function () {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const firstName = document.getElementById("first-name").value;
+            const lastName = document.getElementById("last-name").value;
+            const phone = document.getElementById("phone").value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Сохраняем дополнительные данные в Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    firstName: firstName,
+                    lastName: lastName,
+                    phone: phone,
+                    email: email,
+                    createdAt: new Date().toISOString()
+                });
+
+                // Отправить письмо для подтверждения email
+                await sendEmailVerification(user);
+                alert("Регистрация успешна! Подтвердите email в письме.");
+
+                // Перенаправление на главную страницу
+                window.location.href = "index.html";
+            } catch (error) {
+                alert("Ошибка: " + error.message);
+                console.error("Ошибка регистрации:", error);
+            }
+        };
+    </script>
+</body>
+</html>
