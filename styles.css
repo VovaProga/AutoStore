@@ -292,3 +292,215 @@ input[type="email"] {
         padding: 5px 16px;
     }
 }
+
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: auto; /* Убираем 100% и ставим auto, чтобы кнопка была по размеру контента */
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px; /* Добавляем отступ сверху, чтобы кнопка не была слишком близко к полю ввода */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#login-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+}
+button, #login-button {
+    padding: 10px 20px; 
+    font-size: 16px; 
+    border: 2px solid #333; 
+    border-radius: 5px; 
+    background-color: #dddddd; 
+    color: black; 
+    text-decoration: none; 
+    cursor: pointer; 
+}
+
+button:hover, #login-button:hover {
+    background-color:  #4CAF50; 
+}
+
+
+/* Стили для аутентификации */
+#auth-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.login-link {
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.user-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    background: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 100;
+    min-width: 200px;
+}
+
+.user-info {
+    margin-bottom: 10px;
+}
+
+.user-info h3 {
+    margin: 0 0 5px 0;
+}
+
+.user-info p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.user-menu button {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* Стили для аутентификации */
+#auth-container {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.login-link {
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* Стили для личного кабинета */
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0 auto 20px;
+}
+
+.profile-info {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.profile-info h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    color: #555;
+}
+
+.profile-info strong {
+    color: #333;
+}
+
+/* Стиль кнопки выхода */
+.logout-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #d32f2f;
+}
+
