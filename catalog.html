@@ -1,6 +1,4 @@
-
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -12,17 +10,18 @@
     <header>
         <h1>Магазин автозапчастей</h1>
         <nav>
-            <a href="index.html">Каталог</a>
+            <a href="catalog.html">Каталог</a>
             <a href="cart.html">Корзина</a>
         </nav>
+        <div id="auth-container">
+            <a href="login.html" class="login-link">Войти</a>
+        </div>
     </header>
-    <h1>Каталог товаров</h1>
-    <ul id="catalog-list"></ul>
-    
-    <!-- <form id="checkout-form">
-        <button type="submit">Перейти к оформлению заказа</button>
-    </form> -->
+    <main>
+        <ul id="catalog-list"></ul>
+    </main>
 
     <script src="script.js"></script>
+    <script type="module" src="auth.js"></script>
 </body>
 </html>
